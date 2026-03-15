@@ -5,8 +5,9 @@ import java.util.concurrent.*;
 public class VirtualThreadsProducerConsumer {
 
     private static final int NUM_ITEMS = 100_000;      // 100,000 orders/numbers
-    private static final int NUM_CONSUMERS = 10;       // many consumers
-    private static final int QUEUE_CAPACITY = 1000;
+    private static final int NUM_CONSUMERS = 500;       // many consumers
+    private static final int QUEUE_CAPACITY = 10_000;
+    private static final int THINK_TIME_MICROS = 1;
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("\n=== Platform Threads  ===");
@@ -58,6 +59,7 @@ public class VirtualThreadsProducerConsumer {
                         Integer item = queue.take();   // wait and take
                         if (item == -1) break;         // stop signal
                         // Simulate fast order processing here
+                        Thread.sleep(THINK_TIME_MICROS, 0);
                     }
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
