@@ -18,3 +18,4 @@
 - When the work is pure CPU calculation, platform threads perform similarly as virtual thread
 - As soon as we add even tiny waiting (1 microsecond “think time”) and more workers (500 consumers), virtual threads win big — exactly what happens in real trading when thousands of orders wait for matching or risk checks.
 - Run-to-run variance (jitter) and JIT warm-up are normal in low-latency work. Always run benchmarks a few times and compare stable numbers.
+- Before Virtual thread (Java 23), high concurrency can be achieved with thread pool
